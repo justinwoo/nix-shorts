@@ -1,5 +1,31 @@
 # nix-shorts wip
 
+## How to read articles in this repo
+
+All articles are meant to be easy enough to approach with clear examples of terminal commands, code, or file setups. When project setups are needed, appropriate directories will be in this repo and referenced.
+
+When applicable, usernames are replaced with `your-user` and hashes replaced with `some-hash`. E.g.
+
+```
+$ readlink ~/.nix-profile
+/nix/var/nix/profiles/per-user/justin/profile
+$ readlink -f ~/.nix-profile
+/nix/store/mwgv8fzlr6n9kkb5nyz27fv1l66jc7nf-user-environment
+```
+
+...will be shown as
+
+```
+$ readlink ~/.nix-profile
+/nix/var/nix/profiles/per-user/your-user/profile
+$ readlink -f ~/.nix-profile
+/nix/store/some-hash-user-environment
+```
+
+## Contributing
+
+Small fixes and elaborations can be contributed via PR. Content suggestions can be done via issues. However, many topics that are not critically important to a new user will not be written about here.
+
 ## Don't expect me to put anything in this repo for a while
 
 A collection of short notes about [Nix](https://nixos.org/), down to what is immediately needed for users.
