@@ -55,14 +55,12 @@ nix-repl> pkgs. # you can tab complete from here
 
 ## How do I uninstall packages?
 
-The easiest method is to use `nix-env -e` and tab-complete.
+The easiest method is to use `nix-env -e` (short for `uninstall`) and tab-complete.
 
 ```bash
 $ nix-env -e python
 uninstalling 'python-2.7.16'
 ```
-
-Unfortunately, you will not find `-e` mentioned in the man page for `nix-env`.
 
 ## How do I find out what is installed in my environment?
 
