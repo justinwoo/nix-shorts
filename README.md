@@ -1,4 +1,8 @@
-# nix-shorts wip
+# nix-shorts
+
+A collection of short notes about [Nix](https://nixos.org/), down to what is immediately needed for users.
+
+The aim of this collection is to provide some instantly usable information with clear code demonstrations.
 
 ## How to read articles in this repo
 
@@ -26,18 +30,15 @@ $ readlink -f ~/.nix-profile
 
 Small fixes and elaborations can be contributed via PR. Content suggestions can be done via issues. However, many topics that are not critically important to a new user will not be written about here.
 
-## Don't expect me to put anything in this repo for a while
-
-A collection of short notes about [Nix](https://nixos.org/), down to what is immediately needed for users.
-
-The aim of this collection is to provide some instantly usable information with clear code demonstrations.
-
 ## Installation of Nix
 
 From nixos.org <https://nixos.org/nixos/nix-pills/install-on-your-running-system.html#idm140737316665792>:
 
 ```
-To install Nix, run curl https://nixos.org/nix/install | sh as a non-root user and follow the instructions. Alternatively, you may prefer to download the installation script and verify its integrity using GPG signatures. Instructions for doing so can be found here: https://nixos.org/nix/download.html.
+To install Nix, run curl https://nixos.org/nix/install | sh as a non-root user
+and follow the instructions. Alternatively, you may prefer to download the
+installation script and verify its integrity using GPG signatures. Instructions
+for doing so can be found here: https://nixos.org/nix/download.html.
 ```
 
 For more esoteric information, readers should try looking through the [Nix Pills](https://nixos.org/nixos/nix-pills/).
