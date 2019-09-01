@@ -109,9 +109,10 @@ This is really the same as sets, but in many ways less convenient. If you'd like
 [
   pkgs.python
   pkgs.mypy
-  pkgs.git
 ]
 ```
+
+The result of this installation will be the exact same as the example above.
 
 ## Links
 
