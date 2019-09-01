@@ -53,6 +53,8 @@ $ nix-shell -p '(import ./default.nix {}).purs-0_13_0' --run 'which purs; purs -
 
 To work with Nix shells in some organized manner, you probably will want to use a source-controlled file defining a derivation. To make this concise and explicit, you can use `mkShell` from NixPkgs.
 
+Note that `nix-shell` will consume certain files in the current directory by default. In our example, we will create a `shell.nix` file. If this file does not exist, then a `default.nix` file will be used.
+
 ```nix
 # shell.nix
 { pkgs ? import <nixpkgs> {} }:
@@ -65,7 +67,7 @@ pkgs.mkShell {
 And we can see this used like so:
 
 ```nix
-$ nix-shell --run 'which hello; hello'
+$ nix-shell --run 'which hello; hello' # implicitly does `nix-shell shell.nix --run ...`
 /nix/store/some-hash-hello-2.10/bin/hello
 Hello, world!
 ```
