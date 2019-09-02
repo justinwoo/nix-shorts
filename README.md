@@ -4,6 +4,8 @@ A collection of short notes about [Nix](https://nixos.org/), down to what is imm
 
 The aim of this collection is to provide some instantly usable information with clear code demonstrations.
 
+While you can read the posts in this repo in any order, you might start from how to build your first derivation, to understand how Nix derivations work: <https://github.com/justinwoo/nix-shorts/blob/master/posts/your-first-derivation.md>
+
 ## How to read articles in this repo
 
 All articles are meant to be easy enough to approach with clear examples of terminal commands, code, or file setups. When project setups are needed, appropriate directories will be in this repo and referenced.
