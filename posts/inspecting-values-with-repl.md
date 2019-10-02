@@ -45,7 +45,7 @@ nix-repl> a
 1
 ```
 
-This is equivalent to `let a = 1; in ...`
+This is equivalent to `let a = 1; in ...`, but the introduced variables will persist in the session.
 
 ### Add attributes to scope
 
@@ -99,6 +99,7 @@ pkgconf             pkgsBuildHost       pkgsMusl
 ```bash
 nix-repl> :?
   # ...
+  :b <expr>     Build derivation
   :t <expr>     Describe result of evaluation
   :u <expr>     Build derivation, then start nix-shell
 
