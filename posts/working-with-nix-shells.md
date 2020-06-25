@@ -66,7 +66,7 @@ pkgs.mkShell {
 
 And we can see this used like so:
 
-```nix
+```console
 $ nix-shell --run 'which hello; hello' # implicitly does `nix-shell shell.nix --run ...`
 /nix/store/some-hash-hello-2.10/bin/hello
 Hello, world!
