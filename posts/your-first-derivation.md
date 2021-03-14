@@ -37,8 +37,10 @@ pkgs.stdenv.mkDerivation {
   # $src is defined as the location of our `src` attribute above
   installPhase = ''
     # $out is an automatically generated filepath by nix,
-    # but it's up to you to make it what you need
-    ln -s $src $out
+    # but it's up to you to make it what you need. We'll create a directory at
+    # that filepath, then copy our sources into it.
+    mkdir $out
+    cp -rv $src/* $out
   '';
 }
 ```
@@ -89,9 +91,6 @@ $ nix-build
 ```bash
 $ readlink result
 /nix/store/kgjcq77210jkjppc8628vcl27i6f22k8-basic-derivation
-
-$ readlink -f result
-/nix/store/54992nknd3av7j4p7fmsh96ja5hp1vli-src
 
 $ ls result
 hi.txt
