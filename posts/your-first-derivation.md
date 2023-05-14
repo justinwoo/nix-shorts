@@ -83,11 +83,6 @@ $ nix-build # or nix-build default.nix
 
 This output path is simply where the Nix Store output (`$out`) has been created. Notice that when you run `nix-build` again, no inputs have changed, so the derivation does not need to be built again.
 
-```bash
-$ nix-build
-/nix/store/some-hash-basic-derivation
-```
-
 `nix-build` will create a symlink to the output by default in `./result`. You can inspect the symlink and its contents and see that the output is indeed just a symlink to folder we created and things we copied into it in the `installPhase` of our derivation.
 
 ```bash
