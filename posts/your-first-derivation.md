@@ -19,6 +19,8 @@ hi.txt
 
 Then prepare a `default.nix`, which will be the default Nix file used when we run `nix-build` in a bit.
 
+Everything starting with # is a comment both in the shell script and in the Nix language.
+
 ```nix
 # Set nixpkgs to the default but allow it to be overridden if necessary
 { pkgs ? import <nixpkgs> {} }:
@@ -35,6 +37,7 @@ pkgs.stdenv.mkDerivation {
   # Override the [installPhase](https://nixos.org/nixpkgs/manual/#ssec-install-phase) 
   # which normally "creates the directory $out and calls `make install`"
   # In this case since there is nothing to `make` or compile we'll do it ourselves
+  # Note that this is several lines of shell script
   installPhase = ''
     # $out is a filepath and in this case it'll be a directory
     # It could also be just a single file
