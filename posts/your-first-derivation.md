@@ -39,8 +39,8 @@ pkgs.stdenv.mkDerivation {
   # In this case since there is nothing to `make` or compile we'll do it ourselves
   # Note that this is several lines of shell script
   installPhase = ''
-    # $out is a filepath and in this case it'll be a directory
-    # It could also be just a single file
+    # $out is a path and in this case it'll be a directory (but it could also be a single file)
+    # We create it as a directory using mkdir
     mkdir -p $out
     
     # $src is defined as the location of the `src` attribute above
