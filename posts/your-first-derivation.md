@@ -41,7 +41,8 @@ pkgs.stdenv.mkDerivation {
     mkdir -p $out
     
     # $src is defined as the location of the `src` attribute above
-    # Everything in there is copied to the $out folder (in this case it'll be only the `hi.txt` file)
+    # This command copies everything in $src (here just the `hi.txt` file) to the $out folder we just created
+    # That'll be our simple minimal build step ($src/hi.txt to $out/hi.txt) for this example
     cp -rv $src/* $out
   '';
 }
