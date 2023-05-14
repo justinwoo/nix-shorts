@@ -2,7 +2,7 @@
 
 ## What is a derivation?
 
-A derivation in Nix is a recipe to take some inputs and use those to create some outputs, something commonly called a "build". The inputs are usually some sources in a `src` attribute and the outputs are a path in the Nix store of the form `/nix/store/some-hash-pkg-name`. This path can either be a file (if the output is a single file) or a folder containing any number of files and folders and it will result in a `result` symlink pointing to this path or a new generation of your user environment.
+A derivation in Nix is a recipe to take some inputs and use those to create some outputs, something commonly called a "build". The inputs are usually some sources in a `src` attribute and the outputs are a path in the Nix store of the form `/nix/store/some-hash-pkg-name`. This path can either be a file (if the output is a single file) or a folder containing any number of files and folders and it will usually result in a `result` symlink pointing to this path.
 
 ## Basic derivation example
 
