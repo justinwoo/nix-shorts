@@ -19,7 +19,7 @@ hi.txt
 
 Then prepare a `default.nix`, which will be the default Nix file used when we run `nix-build` in a bit.
 
-Everything starting with # is a comment both in the shell script and in the Nix language.
+Everything starting with `#` is a comment both in the shell script and in the Nix language.
 
 ```nix
 # Set nixpkgs to the default but allow it to be overridden if necessary
