@@ -2,11 +2,11 @@
 
 ## What is a derivation?
 
-A derivation in Nix is a definition of a build, which takes some inputs and produces an output. The inputs are almost always in a `src` attribute, and outputs are almost always some `/nix/store/some-hash-pkg-name` path. Depending on what command you run, the result of building a derivation may result in a new generation of your user environment or a result symlink.
+A derivation in Nix is a recipe to take some inputs and use those to create some outputs, something commonly called a "build". The inputs are usually some sources in a `src` attribute and the outputs are a path in the Nix store of the form `/nix/store/some-hash-pkg-name`. This path can either be a file (if the output is a single file) or a folder containing any number of files and folders and it will result in a `result` symlink pointing to this path or a new generation of your user environment.
 
 ## Basic derivation example
 
-Start with some inputs you want to build with.
+Start with some inputs you want to build with in this case a `src` folder with a text file in it.
 
 ```bash
 $ mkdir src
@@ -17,29 +17,31 @@ $ ls src
 hi.txt
 ```
 
-Then prepare a `default.nix`, which will be used by default when we later run `nix-build`.
+Then prepare a `default.nix`, which will be the default Nix file used when we run `nix-build` in a bit.
 
 ```nix
-# allow our nixpkgs import to be overridden if desired
+# Set nixpkgs to the default but allow it to be overridden if necessary
 { pkgs ? import <nixpkgs> {} }:
 
-# let's write an actual basic derivation
-# this uses the standard nixpkgs mkDerivation function
+# Let's write a derivation using the standard env nixpkgs mkDerivation function
 pkgs.stdenv.mkDerivation {
 
-  # name of our derivation
+  # The name of our derivation
   name = "basic-derivation";
 
-  # sources that will be used for our derivation.
+  # The sources that will be used for our derivation.
   src = ./src;
 
-  # see https://nixos.org/nixpkgs/manual/#ssec-install-phase
-  # $src is defined as the location of our `src` attribute above
+  # Override the [installPhase](https://nixos.org/nixpkgs/manual/#ssec-install-phase) 
+  # which normally "creates the directory $out and calls `make install`"
+  # In this case since there is nothing to `make` or compile we'll do it ourselves
   installPhase = ''
-    # $out is an automatically generated filepath by nix,
-    # but it's up to you to make it what you need. We'll create a directory at
-    # that filepath, then copy our sources into it.
-    mkdir $out
+    # $out is a filepath and in this case it'll be a directory
+    # It could also be just a single file
+    mkdir -p $out
+    
+    # $src is defined as the location of the `src` attribute above
+    # Everything in there is copied to the $out folder (in this case it'll be only the `hi.txt` file)
     cp -rv $src/* $out
   '';
 }
@@ -49,9 +51,9 @@ Some notes about this to know:
 
 ### Nix files are expressions
 
-Every Nix source file must be a valid expression. In this case, our `default.nix` is a an expression for a Function which takes an Attribute Set, provides a default value for `pkgs`, and then returns a derivation value by using the function `mkDerivation` inside of the `stdenv` attribute of `pkgs`.
+Every Nix source file must be a single valid expression. In this case, our `default.nix` is an expression that defines function which takes an Attribute Set, provides a default value for `pkgs`, and then returns the derivation value created by the function `mkDerivation` inside of the `stdenv` attribute of `pkgs`.
 
-When this file is called with `nix-build`, the function will be satisfied automatically with the default argument unless overridden.
+When this file is called with `nix-build`, the function will be called with the default argument as set above.
 
 ### Derivations must have names
 
@@ -59,7 +61,7 @@ This is satisfied by our `name` attribute defined above.
 
 ### Derivations created with `mkDerivation` must have sources
 
-This is satisfied by using the relative path `./src` above.
+This is satisfied by putting the relative path `./src` in `src` above.
 
 ### Standard derivations made with `mkDerivation` uses the concept of "phases"
 
@@ -79,14 +81,14 @@ $ nix-build # or nix-build default.nix
 /nix/store/some-hash-basic-derivation
 ```
 
-This output path is simply where the Nix Store output has been created. Notice that when you run `nix-build` again, no inputs have changed, so the derivation does not need to be built again.
+This output path is simply where the Nix Store output (`$out`) has been created. Notice that when you run `nix-build` again, no inputs have changed, so the derivation does not need to be built again.
 
 ```bash
 $ nix-build
 /nix/store/some-hash-basic-derivation
 ```
 
-`nix-build` will create a symlink to the output by default in `./result`. You can inspect the symlink and the contents and see that the output is indeed just a symlink to the inputs as in our derivation `installPhase`.
+`nix-build` will create a symlink to the output by default in `./result`. You can inspect the symlink and its contents and see that the output is indeed just a symlink to folder we created and things we copied into it in the `installPhase` of our derivation.
 
 ```bash
 $ readlink result
