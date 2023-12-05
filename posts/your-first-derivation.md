@@ -101,4 +101,5 @@ hello
 
 ## Links
 
+* Using stdenv and stdenv.mkDerivation: <https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv>
 * Phases in nixpkgs stdenv derivations: <https://nixos.org/nixpkgs/manual/#sec-stdenv-phases>
