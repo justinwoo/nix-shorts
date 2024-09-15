@@ -23,30 +23,15 @@ exit
 
 ### Expressions as arguments
 
-But instead of only top level attributes, you can also put entire expressions in the `-p` argument. For example, with the [easy-purescript-nix](https://github.com/justinwoo/easy-purescript-nix/) project:
+But instead of only top level attributes, you can also put entire expressions in the `-p` argument. For example:
 
 ```bash
 $ nix-shell \
-     -p 'let ep = import ./default.nix {}; in [ ep.purs ep.spago ]' \
-    --run 'which purs; which spago; purs --version; spago version'
-/nix/store/some-hash-purescript/bin/purs
-/nix/store/some-hash-spago/bin/spago
-0.13.3
-0.9.0.0
-```
-
-As mentioned before, we can use Nix shells to get specific versions of packages.
-
-```bash
-$ nix-shell -p '(import ./default.nix {}).purs' --run 'which purs; purs --version'
-/nix/store/some-hash-purescript/bin/purs
-0.13.3
-```
-
-```bash
-$ nix-shell -p '(import ./default.nix {}).purs-0_13_0' --run 'which purs; purs --version'
-/nix/store/some-hash-purescript/bin/purs
-0.13.0
+    -p "let pkgs = import <nixpkgs> {}; in [ pkgs.hello pkgs.ripgrep pkgs.watchexec ]" \
+    --run "which hello; which rg; which watchexec;"
+/nix/store/nb3j6lj31kibiyp8jc4xdxf788nj600z-hello-2.12.1/bin/hello
+/nix/store/xp39mgfiz25567l6kbl4z1v24f8b6fhv-ripgrep-14.1.0/bin/rg
+/nix/store/ni614bq3zi6c6n0wmwwrnxxnrniv7cqm-watchexec-2.0.0/bin/watchexec
 ```
 
 ## NixPkgs mkShell
