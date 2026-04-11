@@ -77,10 +77,10 @@ Using the REPL with nixpkgs is one of the most common usages of the REPL. From h
 
 ```bash
 
-bash> nix repl '<nixpkgs>' # or `nix repl your-pinned-nixpkgs.nix`
+bash> nix repl -f '<nixpkgs>' # or `nix repl -f your-pinned-nixpkgs.nix`
 
 Loading '<nixpkgs>'...
-Added 10647 variables.
+Added 26814 variables.
 ```
 
 For the most part, what you will find most useful is being able to tab-complete, e.g.:
